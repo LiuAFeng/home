@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">  
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/ba.css">
+    <style>
+        body html{height: 100%;}
+        .header{width: 100%;height: 0.8rem;background: #eee;position: fixed;top: 0;z-index: 999}
+        .top{width: 100%;height: 100%;}
+        .top li{width: 33.33%;float: left;text-align: center;line-height: 0.8rem;color: #000;}
+        .title{width: 100%;height: 0.8rem;background: #2b68c1;position: relative;}
+        .title span{display: block;width: 2.2rem;height: 0.45rem;background: #d8dee8;border-radius: 0.2rem;position: absolute;left: 32%;top:24%;text-align: center;line-height: 0.45rem;color: #000}
+        #reg{margin-top: 0.8rem}
+        #reg select{height: 0.8rem;border: none;outline: none;padding-left: 0.2rem}
+        #reg select option{text-align: center}
+        label{padding-left: 0.2rem;line-height: 0.8rem;height: 0.8rem;display: inline-block;color: blue}
+        input{border: none;display: inline-block;height: 0.5rem;-webkit-appearance:none;}
+        .box{height: 0.8rem;border-bottom:1px solid #eee; }
+        #reg{overflow-y: scroll;min-height: 78rem}
+        .pics{height: 4.5rem;}
+        .identity1{height: 4.5rem;}
+        .identity2{height: 4.5rem;}
+        .box1{width: 40%;height: 3.3rem;margin: 0 auto;}
+        .photos{width: 100%;height: 100%;}
+        .box2{width: 80%;height: 3rem;margin: 0 auto;margin-top: 0.2rem}
+        .identity01{width: 100%;height: 100%;}
+        .identity02{width: 100%;height: 100%;}
+        .box3{width: 80%;height: 3rem;margin: 0 auto;margin-top: 0.2rem}
+        .residence{width: 100%;height: 100%;}
+        .identitys{width: 100%;height: 100%;}
+        .citys{width: 100%;}
+        .citys select{width: 25%;box-sizing: border-box;float: left;}
+        #showchild{width: 90%;height: 8.5rem;background: #dbdbdb;position: fixed;top: 15%;left:5%;padding-left: 0.3rem;box-sizing: border-box;padding-right: 0.3rem;display: none}
+        .sub{margin-left: 26%;margin-top: 8%;background-color: #98ee6d;color:#fff;width: 1rem;height: 0.5rem;border-radius: 0.2rem;color:black}
+        .cancel{margin-left: 5%;margin-top: 8%;background: #f2a0b2;color:#fff;width: 1rem;height: 0.5rem;border-radius: 0.2rem;color:black}
+        .reds{color: red}
+        #showchild .box input{float:right;margin-top: 0.1rem}
+        #showchild .box select{float:right;margin-top: 0.2rem}
+    </style>
+    <title>填写信息</title>
+</head>
+<body>
+        <div class="header">
+             <ul class="top">
+                <li><a href="javascript:history.go(-1)" style="color:#000">返回</a></li>
+                <li>填写信息</li>
+                <li class="btngo">提交</li>
+            </ul>
+        </div>
+        <form action="" method="" id="reg">
+            <p class="title"><span>1.个人基本信息</span></p>
+            <div class="box">
+                <label for=""><span class="reds">*</span>所在派出所:</label>
+                <select name="tissue_id" id="pus" class="non-null">
+                    <option disabled selected value>请选择</option>
+                </select>
+            </div>
+            <div class="box">
+                    <label for=""><span class="reds">*</span>姓名:</label>
+                <input class="non-null" type="text" placeholder="请输入姓名" name="username" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+            </div>
+            <div class="box">
+                    <label for="">曾用名:</label>
+                <input type="text" placeholder="请输入曾用名" name="nickname" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>性别:</label>
+                <select name="sex" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>民族:</label>
+                <input class="non-null" type="text" placeholder="请输入民族" name="nation" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>身份证号码:</label>
+                <input class="non-null" type="text" placeholder="请输入身份证号码" name="idcard" onblur="RegExpToCardID()" id="cardID">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>出生日期:</label>
+                <input class="non-null" type="date" placeholder="请选择出生日期" name="birthday">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>政治面貌:</label>
+                <select name="politics" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">中共党员</option>
+                    <option value="1">共青团员</option>
+                    <option value="2">民主党派</option>
+                    <option value="3">群众</option>
+                    <option value="4">其他</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>文化程度:</label>
+                <select name="education" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">博士</option>
+                    <option value="1">硕士</option>
+                    <option value="2">大学</option>
+                    <option value="3">大专</option>
+                    <option value="4">高中</option>
+                    <option value="5">初中</option>
+                    <option value="6">小学</option>
+                    <option value="7">其他</option>
+                </select>
+            </div>
+            <div class="box">
+                    <label for=""><span class="reds">*</span>婚姻状况:</label>
+                    <select name="marriage_state" id="" class="non-null">
+                        <option disabled selected value>请选择</option>
+                        <option value="0">已婚</option>
+                        <option value="1">未婚</option>
+                        <option value="2">离异</option>
+                        <option value="3">丧偶</option>
+                        <option value="4">其他</option>
+                    </select>
+                </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>户口类型:</label>
+                <select name="account_type" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">省外城镇</option>
+                    <option value="1">省外农村</option>
+                    <option value="2">省内城镇</option>
+                    <option value="3">省内农村</option>
+                    <option value="4">市内城镇</option>
+                    <option value="5">市内农村</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>户籍地省市区:</label>
+            </div>
+
+            <div id="demo3" class="citys box">
+                <p>
+                    <select name="accound_province"></select>
+                    <select name="accound_city"></select>
+                    <select name="accound_area"></select>
+                    <select name="accound_street"></select>
+                </p>
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>户籍地详址:</label>
+                <input class="non-null" type="text" placeholder="请输入户籍地详址" name="accound_address">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>现居住地省市区:</label>
+            </div>
+
+            <div id="demo4" class="citys box">
+                <p>
+                    <select name="live_province"></select>
+                    <select name="live_city"></select>
+                    <select name="live_area"></select>
+                    <select name="live_street"></select>
+                </p>
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>现居住地详址:</label>
+                <input class="non-null" type="text" placeholder="请输入现居住地详址" name="live_address">
+            </div>
+
+            <p class="title"><span>2.房屋及房主信息</span></p>
+
+            <div class="box">
+                <label for="">房屋信息编码:</label>
+                <input type="text" placeholder="请输入房屋信息编码" name="house_number">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>住所类型:</label>
+                <select name="live_type" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">居民家中</option>
+                    <option value="1">单位内部</option>
+                    <option value="2">工地现场</option>
+                    <option value="3">租赁房屋</option>
+                    <option value="4">自购房</option>
+                    <option value="5">其他</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">来陕时间:</label>
+                <input type="date" placeholder="来陕时间" name="come_shan_time">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住方式:</label>
+                <select name="live_way" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">单身居住</option>
+                    <option value="1">家庭居住</option>
+                    <option value="2">合伙居住</option>
+                    <option value="3">集体居住</option>
+                    <option value="4">其他</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>入住时间:</label>
+                <input class="non-null" type="date" placeholder="入住时间" name="live_time">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住事由:</label>
+                <select name="live_cause" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">务工</option>
+                    <option value="1">务农</option>
+                    <option value="2">经商</option>
+                    <option value="3">服务业</option>
+                    <option value="4">投靠亲友</option>
+                    <option value="5">探亲访友</option>
+                    <option value="6">观光旅游</option>
+                    <option value="7">其他</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)姓名:</label>
+                <input class="non-null" type="text" placeholder="请输入房主(代理人)姓名" name="proxy_name" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)电话:</label>
+                <input class="non-null" type="number" placeholder="请输入房主(代理人)电话" name="proxy_phone">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住人与房主(代理人)关系:</label>
+                <select name="relation" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">亲友</option>
+                    <option value="1">家庭成员</option>
+                    <option value="2">租赁</option>
+                    <option value="3">聘雇</option>
+                    <option value="4">其他</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)身份证:</label>
+                <input class="non-null" type="number" placeholder="请输入" name="proxy_id_number">
+            </div>
+            
+            <div class="box">
+                <label for="">租赁合同:</label>
+                <select name="lease_pact" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">签订</option>
+                    <option value="1">未签订</option>
+                </select>
+            </div>
+
+            <p class="title"><span>3.个人工作信息</span></p>
+            <div class="box">
+                <label for="">从业状态:</label>
+                <select name="business_type" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">未就业</option>
+                    <option value="1">灵活就业</option>
+                    <option value="2">就业</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for="">职业:</label>
+                <input type="text" placeholder="请输入职业" name="profession">
+            </div>
+
+            <div class="box">
+                <label for="">职称:</label>
+                <select name="job_title" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">高级</option>
+                    <option value="1">中级</option>
+                    <option value="2">初级</option>
+                    <option value="3">技术员</option>
+                    <option value="4">无职称</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">工作单位:</label>
+                <input type="text" placeholder="请输入" name="unit">
+            </div>
+            <div class="box">
+                <label for="">单位省市街道:</label>
+                <!-- <input type="text" placeholder="请选择" name="street"> -->
+            </div>
+
+            <div id="demo5" class="citys box">
+                <p>
+                    <select name="unit_province"></select>
+                    <select name="unit_city"></select>
+                    <select name="unit_area"></select>
+                    <select name="unit_street"></select>
+                </p>
+            </div>
+
+            <div class="box">
+                <label for="">工作单位地址:</label>
+                <input type="text" placeholder="请输入" name="unit_address">
+            </div>
+            <div class="box">
+                <label for="">技能培训:</label>
+                <select name="skill_training" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">参加</option>
+                    <option value="1">未参加</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for="">技能类别:</label>
+                <input type="text" placeholder="请输入" name="skill_type">
+            </div>
+            <div class="box">
+                <label for="">证书:</label>
+                <select name="certificate" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">有</option>
+                    <option value="1">无</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">证书编号:</label>
+                <input type="number" placeholder="请输入" name="certificate_number">
+            </div>
+            <div class="box">
+                <label for="">工作单位联系电话:</label>
+                <input type="number" placeholder="请输入" name="unit_phone">
+            </div>
+            
+            <div class="box">
+                <label for="">劳动合同:</label>
+                <select name="labour_pact" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">签订</option>
+                    <option value="1">未签订</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">参加社保:</label>
+                <select name="social_security" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">参加</option>
+                    <option value="1">未参加</option>
+                </select>
+            </div>
+            <p class="title"><span>4.配偶信息</span></p>
+            <div class="box">
+                <label for="">配偶姓名:</label>
+                <input type="text" placeholder="请输入" name="spouse_name">
+            </div>
+            <div class="box">
+                <label for="">生育动态:</label>
+                <select name="bear_state" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">一孩</option>
+                    <option value="1">二孩</option>
+                    <option value="2">多孩</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">配偶身份证号码:</label>
+                <input type="number" placeholder="请输入" name="spouse_id_number">
+            </div>
+
+            <div class="box">
+                <label for="">避孕动态:</label>
+                <select name="contraception_state" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">药具</option>
+                    <option value="1">上环</option>
+                    <option value="2">结扎</option>
+                    <option value="3">皮理</option>
+                    <option value="4">无措施</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">持证状态:</label>
+                <select name="hold_certificate_state" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">服务证</option>
+                    <option value="1">婚育证</option>
+                    <option value="2">无证</option>
+                </select>
+            </div>
+            <p class="title"><span style="display:inline-block;width:4rem;left:18%">5.偕行人/子女(16岁以下)信息</span></p>
+
+
+            <div class="box">
+                <label for="">子女信息:</label>
+                <input type="button" value="添加子女信息" name="" id="shows">
+            </div>
+            <p class="title"><span>6.其他信息</span></p>
+            <div class="box">
+                <label for=""><span class="reds">*</span>首次办证:</label>
+                <select name="first_accreditation" id="" class="non-null">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">是</option>
+                    <option value="1">否</option>
+                </select>
+            </div>
+
+            <div class="box">
+                <label for="">办证时间:</label>
+                <input type="date" placeholder="办证时间" name="accreditation_time">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>本人联系电话:</label>
+                <input class="non-null" type="number" placeholder="请输入" name="phone">
+            </div>
+
+             <div class="box">
+                <label for="">QQ号码:</label>
+                <input type="number" placeholder="请输入" name="qq">
+            </div>
+             <div class="box">
+                <label for="">车牌号码:</label>
+                <input type="number" placeholder="请输入" name="licence_plate">
+            </div>
+            <div class="box">
+                <label for="">指纹编码:</label>
+                <input type="text" placeholder="请输入" name="fingerprint">
+            </div>
+            <div class="box">
+                <label for="">血型:</label>
+                <select name="blood_type" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">A型</option>
+                    <option value="1">B型</option>
+                    <option value="2">AB型</option>
+                    <option value="3">O型</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">DNA编码:</label>
+                <input type="text" placeholder="请输入" name="dna">
+            </div>
+            <!-- <input class="js_upFile cover1" type="file" name="cover" accept="image/*" capture="camera" multiple/> -->
+            <div class="box pics">
+                <label for="">请选择一寸彩色照片:</label>
+                <input id="targetFile" type="file"  name="ycimage" style="margin-top:0.2rem;width:3rem">
+                <div class="box1">
+                    <img class="photos"  alt="">
+                </div>
+            </div>
+            <p style="padding:0.2rem;height:0.8rem;background:#eee">注:下面证件照片可为居民身份证、户口本、护照、机动车驾驶证及户籍证明等照片其中之一</p>
+
+            <div class="box identity1">
+                <label for="">身份证正面照片:</label>
+                <input class="identityz" type="file"  name="sfzzmimage" style="margin-top:0.2rem;width:3rem">
+                <div class="box2">
+                    <img class="identity01"  alt="">
+                </div>
+            </div>
+
+            <div class="box identity2">
+                <label for="">身份证反面照片:</label>
+                <input class="identityf" type="file"  name="sfzfmimage" style="margin-top:0.2rem;width:3rem">
+                <div class="box3">
+                    <img class="identity02"  alt="">
+                </div>
+            </div>
+            <p style="padding:0.2rem;background:#eee">注：下面居住证明照片可为居住登记回执单、房屋产权证、购房合同、购房发票、房屋租赁合同或村（居）民委员会、用人单位、就读学校、物业管理部门出具的住宿证明等；工作证、公司营业执照、劳动合同、用人单位出具的劳动关系证明或者其他能够证明有合法稳定就业的证明等；学生证、就读学校出具的其他能够证明连续就读的证明等；其中之一</p>
+
+
+            <div class="box identity1">
+                <label for="">居住证照片:</label>
+                <input class="residencepic" type="file"  name="jzzmimage" style="margin-top:0.2rem;width:3rem">
+                <div class="box2">
+                    <img class="residence"  alt="">
+                </div>
+            </div>
+
+            <div class="box identity1">
+                <label for="">手持身份证照片:</label>
+                <input class="identitypic" type="file"  name="scsfzimage" style="margin-top:0.2rem;width:3rem">
+                <div class="box2">
+                    <img class="identitys"  alt="">
+                </div>
+            </div>
+
+            
+            <div class="box" style="display:none">
+                <input type="text" name="uid" class="uid">
+                <input type="text" class="chinum">
+                <input type="text" class="num1">
+                <input type="text" class="num2">
+                <input type="text" class="num3">
+                <input type="text" class="num4">
+                <input type="text" class="num5">
+            </div>
+        </form>
+
+
+        <form action="" id="showchild">
+            <div class="box" style="margin-top:0.4rem">
+                <label for="">1.姓名:</label>
+                <input type="text" placeholder="请输入" name="username">
+            </div>
+            <div class="box">
+                <label for="">与本人关系:</label>
+                <input type="text" placeholder="请输入" name="relation">
+            </div>
+            <div class="box">
+                <label for="">性别:</label>
+                <select name="sex" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">身份证号码:</label>
+                <input type="number" placeholder="请输入" name="idcard">
+            </div>
+            <div class="box">
+                <label for="">2.姓名:</label>
+                <input type="text" placeholder="请输入" name="username">
+            </div>
+            <div class="box">
+                <label for="">与本人关系:</label>
+                <input type="text" placeholder="请输入" name="relation">
+            </div>
+            <div class="box">
+                <label for="">性别:</label>
+                <select name="sex" id="">
+                    <option disabled selected value>请选择</option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="">身份证号码:</label>
+                <input type="number" placeholder="请输入" name="idcard">
+            </div>
+                <input type="button" value="提交" class="sub">
+                <input type="button" value="取消" class="cancel">
+        </form>
+
+        
+</body>
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.citys.js"></script>
+<script>
+
+        var data1 = JSON.parse(sessionStorage.getItem('key'));
+      if(data1==null){
+            location.href='../login.html'
+        }
+    //身份证正则判断
+        function RegExpToCardID(){  
+            var cardID =document.getElementById("cardID").value;  
+            var regExpTocardID=/(^\d{15}$)|(^\d{17}[0-9x]$)/gi;  
+            if(regExpTocardID.test(cardID)){  
+                var year=cardID.substring(6,10);  
+                var month=cardID.substring(10,12);  
+                var day=cardID.substring(12,14);  
+                var today=new Date();  
+                if(year<=today.getFullYear()){  
+                    if(month>0&&month<13){  
+                        if(month==2){//二月  
+                            if((year%400==0)||(year%4==0&&year%100!=0)){//闰年  
+                                if(day>0&&day<=29){  
+                                    return
+                                    // alert("验证通过："+year+"年"+month+"月"+day+"日");  
+                                }else{  
+                                    alert("闰年2月出生日格式错误");  
+                                }  
+                            }else{//非闰年  
+                                if(day>0&&day<=28){ 
+                                    return 
+                                    // alert("验证通过："+year+"年"+month+"月"+day+"日");  
+                                }else{  
+                                    alert("非闰年2月出生日格式错误");  
+                                }  
+                            }  
+                        }else if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){  
+                            if(day>0&&day<=31){ 
+                                return 
+                                // alert("验证通过："+year+"年"+month+"月"+day+"日");  
+                            }else{  
+                                alert("平年1、3、5、7、8、10、12月出生日格式错误");  
+                            }  
+                        }else{  
+                            if(day>0&&day<=30){  
+                                return
+                                // alert("验证通过："+year+"年"+month+"月"+day+"日");  
+                            }else{  
+                                alert("平年4、6、9、11月出生日格式错误");  
+                            }  
+                        }  
+                    }else{  
+                        alert("出生月格式错误");  
+                    }  
+                }else{  
+                    alert("出生年格式错误");  
+                }  
+            }else{  
+                alert("输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。");  
+            }  
+        }  
+
+//子女信息
+    $(function () {
+
+         $.ajax({ 
+                        type:'get',  
+                        url:"http://47.93.187.125:2020/api/v1/police/getpolice", 
+                        cache: false,
+                        data:"",
+                        dataType:'json', 
+                        success: function (result) {
+                            // console.log(result);//打印服务端返回的数据(调试用)
+                            if (result.code == 200) {
+                                let res = result.data
+                                console.log(res)
+                                res.forEach(function(v){
+                                    // console.log(i)
+                                    var ulStr = ''
+                                    ulStr += ("<option value="+v.id+">"+ v.name +'</option>')
+                                    console.log(ulStr)
+                                    // document.body.innerHTML += ulStr
+                                    $("#pus").append(ulStr)
+                                })
+                                
+                            };          
+                        
+                        },
+                        error : function(err) {                 
+                            console.log(err)
+                            alert("异常！");
+                        }
+                     })
+        var data1 = JSON.parse(sessionStorage.getItem('key'));
+        console.log(data1)
+        $(".uid").val(data1.id)
+        var username=document.cookie.split("=")[1]
+        console.log(username)
+         if(username == ""){
+            location.href="../login.html"
+         }
+        var arrayObj = new Array()
+        $("#shows").on("click",function(){
+            $("#showchild").css("display","block")
+        })
+        $(".cancel").on("click",function(){
+            $("#showchild").css("display","none")
+        })
+        $(".sub").on("click",function(){
+            $("#showchild").css("display","none")
+            var params3 = $("#showchild").serialize();
+            console.log(params3)
+            arrayObj.push(params3)
+            $(".chinum").attr({"name":"child"})
+            $(".chinum").val([arrayObj])
+            console.log(arrayObj)
+        })
+        console.log(arrayObj)
+        //获取浏览器的userAgent,并转化为小写
+        //上传照片
+        var ua = navigator.userAgent.toLowerCase();
+        //判断是否是苹果手机，是则是true
+        var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
+        if (isIos) {
+            $("input:file").removeAttr("capture");
+            console.log("input:file")
+        };
+        $("#targetFile").on('change', function () {
+            function getObjectURL(file) {  
+                var url = null;  
+                if (window.createObjcectURL != undefined) {  
+                    url = window.createOjcectURL(file);  
+                } else if (window.URL != undefined) {  
+                    url = window.URL.createObjectURL(file);  
+                } else if (window.webkitURL != undefined) {  
+                    url = window.webkitURL.createObjectURL(file);  
+                }  
+                return url;  
+            }  
+            var objURL = getObjectURL(this.files[0]);//这里的objURL就是input file的真实路径  
+            console.log(objURL)
+
+
+            var oFReader = new FileReader();
+            var files = $('#targetFile').val()
+            console.log(files)
+            var file = $('#targetFile')[0].files[0];
+            oFReader.readAsDataURL(file);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                // console.log(file)
+                $('.photos').attr('src',objURL);
+                $(".num1").attr('name',"ycimage")
+                $(".num1").val(objURL)
+            }
+        });
+        $(".identityz").on('change', function () {
+            function getObjectURL(file) {  
+                var url = null;  
+                if (window.createObjcectURL != undefined) {  
+                    url = window.createOjcectURL(file);  
+                } else if (window.URL != undefined) {  
+                    url = window.URL.createObjectURL(file);  
+                } else if (window.webkitURL != undefined) {  
+                    url = window.webkitURL.createObjectURL(file);  
+                }  
+                return url;  
+            }  
+            var objURL = getObjectURL(this.files[0]);//这里的objURL就是input file的真实路径  
+            console.log(objURL)
+            var oFReader = new FileReader();
+            var files = $('.identityz').val()
+            console.log(files)
+            var file = $('.identityz')[0].files[0];
+            oFReader.readAsDataURL(file);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                // console.log(src)
+                $('.identity01').attr('src',objURL);
+                $(".num2").attr('name',"sfzzmimage")
+                $(".num2").val(objURL)
+            }
+        });
+        $(".identityf").on('change', function () {
+            function getObjectURL(file) {  
+                var url = null;  
+                if (window.createObjcectURL != undefined) {  
+                    url = window.createOjcectURL(file);  
+                } else if (window.URL != undefined) {  
+                    url = window.URL.createObjectURL(file);  
+                } else if (window.webkitURL != undefined) {  
+                    url = window.webkitURL.createObjectURL(file);  
+                }  
+                return url;  
+            }  
+            var objURL = getObjectURL(this.files[0]);//这里的objURL就是input file的真实路径  
+            console.log(objURL)
+            var oFReader = new FileReader();
+            var files = $('.identityf').val()
+            console.log(files)
+            var file = $('.identityf')[0].files[0];
+            oFReader.readAsDataURL(file);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                // console.log(src)        
+                $('.identity02').attr('src',objURL);
+                $(".num3").attr('name',"sfzfmimage")
+                $(".num3").val(objURL)
+            }
+        });
+
+        $(".residencepic").on('change', function () {
+            function getObjectURL(file) {  
+                var url = null;  
+                if (window.createObjcectURL != undefined) {  
+                    url = window.createOjcectURL(file);  
+                } else if (window.URL != undefined) {  
+                    url = window.URL.createObjectURL(file);  
+                } else if (window.webkitURL != undefined) {  
+                    url = window.webkitURL.createObjectURL(file);  
+                }  
+                return url;  
+            }  
+            var objURL = getObjectURL(this.files[0]);//这里的objURL就是input file的真实路径  
+            console.log(objURL)
+            var oFReader = new FileReader();
+            var files = $('.residencepic').val()
+            console.log(files)
+            var file = $('.residencepic')[0].files[0];
+            oFReader.readAsDataURL(file);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                // console.log(src)
+                $('.residence').attr('src',objURL);
+                $(".num4").attr('name',"jzzmimage")
+                $(".num4").val(objURL)
+            }
+        });
+        $(".identitypic").on('change', function () {
+            function getObjectURL(file) {  
+                var url = null;  
+                if (window.createObjcectURL != undefined) {  
+                    url = window.createOjcectURL(file);  
+                } else if (window.URL != undefined) {  
+                    url = window.URL.createObjectURL(file);  
+                } else if (window.webkitURL != undefined) {  
+                    url = window.webkitURL.createObjectURL(file);  
+                }  
+                return url;  
+            }  
+            var objURL = getObjectURL(this.files[0]);//这里的objURL就是input file的真实路径  
+            console.log(objURL)
+            var oFReader = new FileReader();
+            var files = $('.identitypic').val()
+            console.log(files)
+            var file = $('.identitypic')[0].files[0];
+            oFReader.readAsDataURL(file);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                // console.log(src)
+                $('.identitys').attr('src',objURL);
+                $(".num5").attr('name',"scsfzimage")
+                $(".num5").val(objURL)
+            }
+    });
+          
+    // ajax提交表单
+            $(".btngo").on("click",function(){
+
+
+                var flag = true
+                    $(".non-null").each(function(){
+                        var name = $(this).attr("name");
+                        console.log($(this).val())
+                        if($(this).val() =="" || $(this).val() == null){
+                            flag = false
+                            return false
+                        }     
+                    })  
+                    if(flag == false){
+                        alert('请完善表单信息。')
+                        return
+                    }
+                    var  childs = arrayObj
+                    var params1 = $("#reg").serialize().split('&child=')[0]
+                    var params2 = $("#reg").serializeArray();
+                    var data = $.param({'child': childs}) + '&' + params1
+                    console.log(params1);  //name=zhangsan&sex=1&age=20
+                    console.log(params2);
+                    params1['child']=arrayObj;
+                    console.log(params1)
+                    console.log(arrayObj)
+                    if(childs[0] != undefined){
+                        var childArr = childs[0].split('&')
+                        var finalArr = []
+                        var obj = {}
+                        for(var i=0;i<childArr.length;i++){
+                            var v = childArr[i]
+                            var key = v.split('=')[0]
+                            var value = v.split('=')[1]
+                            if(obj[key] != undefined){
+                                finalArr.push(obj)
+                                obj = {}
+                            }
+                            obj[key] = value
+                        }
+                        finalArr.push(obj)
+                        params1 += ('&child=' + JSON.stringify(finalArr))
+                    }
+                    console.log(finalArr)
+                    console.log(decodeURIComponent(params1,true))
+                    console.log(params1)
+                    // return false
+                    $.ajax({ 
+                        type:'post',  
+                        url:"http://47.93.187.125:2020/api/v1/userinfo/insert_info", 
+                        cache: false,
+                        data:params1,
+                        dataType:'json', 
+                        success: function (result) {
+                            console.log(result);//打印服务端返回的数据(调试用)
+                            if (result.code == 200) {
+                                console.log(result)
+                                alert("提交成功");
+                                location.href="index.html"
+                            };          
+                        
+                        },
+                        error : function(err) {                 
+                            console.log(err)
+                            alert("异常！");
+                        }
+                     })
+        
+        
+            })
+    })
+// 现居住地地址四级联动
+    $(function(){
+        var $towns = $('#demo4 select[name="live_street"]');
+                var townFormat = function(info){
+                    $towns.hide().empty();
+                    if(info['code']%1e4&&info['code']<7e5){ //是否为“区”且不是港澳台地区
+                        $.ajax({
+                            url:'http://passer-by.com/data_location/town/'+info['code']+'.json',
+                            dataType:'json',
+                            success:function(town){
+                                $towns.show();
+                                for(i in town){
+                                        $towns.append('<option value="'+i+'">'+town[i]+'</option>');
+                                }
+                            }
+                        });
+                    }
+                };
+
+                $('#demo4').live_citys({
+                    live_province:'北京市',
+                    live_city:'东城区',
+                    live_area:'东华门街道',
+                    onChange:function(info){
+                        townFormat(info);
+                    }
+                },function(api){
+                    var info = api.getInfo();
+                    townFormat(info);
+                });
+
+    })
+
+    $(function(){
+// 户籍地地址省市区县
+    var $town = $('#demo3 select[name="accound_street"]');
+                var townFormat = function(info){
+                    $town.hide().empty();
+                    if(info['code']%1e4&&info['code']<7e5){ //是否为“区”且不是港澳台地区
+                        $.ajax({
+                            url:'http://passer-by.com/data_location/town/'+info['code']+'.json',
+                            dataType:'json',
+                            success:function(town){
+                                $town.show();
+                                for(i in town){
+                                        $town.append('<option value="'+i+'">'+town[i]+'</option>');
+                                }
+                            }
+                        });
+                    }
+                };
+                $('#demo3').accound_citys({
+                    accound_province:'北京市',
+                    accound_city:'东城区',
+                    accound_area:'东华门街道',
+                    onChange:function(info){
+                        townFormat(info);
+                    }
+                },function(api){
+                    var info = api.getInfo();
+                    townFormat(info);
+                });
+
+    })
+
+    $(function(){
+// 户籍地地址省市区县
+    var $town = $('#demo5 select[name="unit_street"]');
+                var townFormat = function(info){
+                    $town.hide().empty();
+                    if(info['code']%1e4&&info['code']<7e5){ //是否为“区”且不是港澳台地区
+                        $.ajax({
+                            url:'http://passer-by.com/data_location/town/'+info['code']+'.json',
+                            dataType:'json',
+                            success:function(town){
+                                $town.show();
+                                for(i in town){
+                                        $town.append('<option value="'+i+'">'+town[i]+'</option>');
+                                }
+                            }
+                        });
+                    }
+                };
+                $('#demo5').unit_citys({
+                    unit_province:'北京市',
+                    unit_city:'东城区',
+                    unit_area:'东华门街道',
+                    onChange:function(info){
+                        townFormat(info);
+                    }
+                },function(api){
+                    var info = api.getInfo();
+                    townFormat(info);
+                });
+
+    })
+</script>

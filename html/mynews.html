@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/ba.css">
+    <style>
+        .header{width: 100%;height: 0.8rem;background: #eee;position: fixed;top: 0;z-index: 999}
+        .top{width: 100%;height: 100%;}
+        .top li{width: 33.33%;float: left;text-align: center;line-height: 0.8rem;color: #000}
+        .list{width: 95%;min-height: 5rem;margin: 0 auto;margin-top: 1.5rem;box-sizing: border-box}
+        .list li{width: 100%;border-radius: 0.15rem;height: 0.7rem;text-align: left;line-height: 0.7rem;font-size: 0.26rem;margin-top: 0.2rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;background: #dbdbdb;padding: 0 0.2rem;box-sizing: border-box}
+        .list li span{color:#4478c5;margin-right: 0.2rem}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <ul class="top">
+            <li><a href="javascript:history.go(-1)" style="color:#000">返回</a></li>
+            <li>消息</li>
+        </ul>
+    </div>
+    <ul class="list">
+        <li><span>审核通过</span>本周末终于迎来晴好天</li>
+        <li><span>办理中心</span>吉林松原发生5.7级地震 松原城区震感强烈</li>
+        <li><span>我的消息</span>名少年偷换商家二维码 20多天“赚”了近5000元</li>
+    </ul>
+</body>
+</html>
+<script>
+   var data1 = JSON.parse(sessionStorage.getItem('key'));
+      if(data1==null){
+            location.href='../login.html'
+        }
+</script>

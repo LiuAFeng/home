@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/ba.css">
+    <title>居住证办理列表</title>
+    <style>
+        .header{width: 100%;height: 0.8rem;background: #eee;text-align: center;line-height: 0.8rem;color: #000;font-size: 0.28rem;position: fixed;top: 0}
+        .goback{position: fixed;top:0.2rem;left: 0.5rem;font-size: 0.26rem;color: black}
+        ul{width: 90%;height: 0.7rem;margin: 0 auto;margin-top: 0.3rem;margin-top: 0.27rem;border-radius: 0.1rem;background: #dbdbdb}
+        li{float: left;text-align: center;line-height: 0.7rem}
+        li span{background: blue;display: inline-block;width: 0.8rem;height: 0.4rem;line-height: 0.4rem;font-size: 0.26rem;border-radius: 0.1rem;color: #fff}
+        ul li:nth-child(1){width: 20%;height: 0.7rem;}
+        ul li:nth-child(2){width: 20%;height: 0.7rem;}
+        ul li:nth-child(3){width: 40%;height: 0.7rem;}
+        ul li:nth-child(4){width: 20%;height: 0.7rem;}
+        .fix{position: fixed;top:0;background:#fff;z-index: 999;width: 100%;height: 0.8rem;}
+        .box{margin-top: 1.6rem}
+    </style>
+</head>
+<body>
+    <p class="header">居住证办理列表</p>
+    <a href="javascript:history.go(-1)" class="goback">返回</a>
+    <div class="box">
+         <ul style="color:#024bb5;font-size:0.26rem;margin-top:0.8rem" class="fix">
+             <li>序号</li>
+             <li>姓名</li>
+             <li>办理状态</li>
+             <li>操作</li>
+         </ul>
+    </div>
+</body>
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+      var data1 = JSON.parse(sessionStorage.getItem('key'));
+      if(data1==null){
+            location.href='../login.html'
+        }
+        $.ajax({ 
+                type:'get',  
+                url:"http://47.93.187.125:2020/api/v1/userinfo/info_list", 
+                cache: false,
+                data:{
+                    uid:data1.id
+                },
+                dataType:'json', 
+                success: function (result) {
+                    // console.log(result.data)
+                    if (result.code == 200) {
+                        console.log(result.data)
+                        var res = result.data
+                        function settxt(str){
+                            if(str == "0"||str == "1"){
+                                return "审核中"
+                            }
+                            if(str == "2"||str == "3"){
+                                return "审核不通过"
+                            }
+                            if(str == "4"){
+                                return "待制证"
+                            }
+                            if(str == "5"){
+                                return "完成"
+                            }
+                        }
+                        let i = 0
+                        res.forEach(function(v){
+                            i++
+                            var ulStr = '<ul>'
+                            ulStr += ('<li>'+ i +'</li>')
+		                    ulStr += ('<li>'+ v.username +'</li>')
+                            ulStr += ('<li>'+ settxt(v.status) +'</li>')
+                            ulStr += ('<li>'+ "<span>"+"查看"+"</span>" +'</li>')
+                            ulStr += ('<li>'+ "<b style='display:none'>"+v.id+"</b>" +'</li>')
+		                    ulStr += '</ul>'
+                            document.body.innerHTML += ulStr
+                        })
+                        // <input type="text" style="display:none">
+                    }
+
+                    //进入详情页
+
+                    var s = $("ul").find("span")
+                    var b = $("ul").find("b")
+                    console.log(s)
+                    console.log(b)
+                //    $("ul")
+                    for(let i = 0;i<s.length;i++){
+                        $(s[i]).click(function(){
+                           console.log(b[i].innerHTML)
+                           console.log(b[i].innerHTML)
+                        //    return false
+                           location.href = 'info.html?' + b[i].innerHTML
+                        })
+                    }
+                }
+                ,error : function(err) {
+                    console.log("网络错误请稍后重试")
+                }
+            })
+
+</script>

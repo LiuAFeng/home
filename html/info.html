@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">  
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/ba.css">
+    <style>
+        body html{height: 100%;}
+        .header{width: 100%;height: 0.8rem;background: #eee;position: fixed;top: 0;z-index: 999}
+        .top{width: 100%;height: 100%;}
+        .top li{width: 33.33%;float: left;text-align: center;line-height: 0.8rem;color: #000;}
+        .title{width: 100%;height: 0.8rem;background: #2b68c1;position: relative;}
+        .title span{display: block;width: 2.2rem;height: 0.45rem;background: #d8dee8;border-radius: 0.2rem;position: absolute;left: 32%;top:24%;text-align: center;line-height: 0.45rem;color: #000}
+        #reg{margin-top: 0.8rem}
+        #reg select{height: 0.8rem;border: none;outline: none;padding-left: 0.2rem}
+        #reg select option{text-align: center}
+        label{padding-left: 0.2rem;line-height: 0.8rem;height: 0.8rem;display: inline-block;color: blue}
+        input{border: none;display: inline-block;height: 0.5rem;-webkit-appearance:none;}
+        .box{height: 0.8rem;border-bottom:1px solid #eee; }
+        #reg{overflow-y: scroll;min-height: 70rem}
+        .pics{height: 4.5rem;}
+        .identity1{height: 4.5rem;}
+        .identity2{height: 4.5rem;}
+        .box1{width: 40%;height: 3.3rem;margin: 0 auto;}
+        .photos{width: 100%;height: 100%;}
+        .box2{width: 80%;height: 3rem;margin: 0 auto;margin-top: 0.2rem}
+        .identity01{width: 100%;height: 100%;}
+        .identity02{width: 100%;height: 100%;}
+        .box3{width: 80%;height: 3rem;margin: 0 auto;margin-top: 0.2rem}
+        .residence{width: 100%;height: 100%;}
+        .identitys{width: 100%;height: 100%;}
+        .citys{width: 100%;}
+        .citys select{width: 25%;box-sizing: border-box;float: left;}
+        /* input{font-size: 0.25rem} */
+        #showchild{width: 90%;height: 8rem;background: #E3E4e5;position: fixed;top: 20%;left:5%;display: none}
+        .sub{margin-left: 30%;margin-top: 8%;background-color: green;color:#fff;width: 1rem;height: 0.5rem;}
+        .cancel{margin-left: 5%;margin-top: 8%;background: red;color:#fff;width: 1rem;height: 0.5rem;}
+        .reds{color: red}
+        #push ul{width: 100%;}
+        #push ul li{float: left;text-align: center;height: 0.5rem;}
+        #push ul li:nth-child(1){width: 20%;float: left;height: 0.5rem;}
+        #push ul li:nth-child(2){width: 20%;float: left}
+        #push ul li:nth-child(3){width: 60%;float: left}
+        .relation{width: 40%}
+        
+    </style>
+    <title>填写信息</title>
+</head>
+<body>
+        <div class="header">
+             <ul class="top">
+                <li><a href="javascript:history.go(-1)" style="color:#000">返回</a></li>
+                <li>信息查看</li>
+                <li class="btngo">提交</li>
+            </ul>
+        </div>
+        <form action="" method="" id="reg">
+            <p class="title"><span>1.个人基本信息</span></p>
+            <div class="box">
+                <label for=""><span class="reds">*</span>所在派出所:</label>
+                <input type="text" class="tissue_id">
+            </div>
+            <div class="box">
+                    <label for=""><span class="reds">*</span>姓名:</label>
+                    <input type="text" class="username">
+            </div>
+            <div class="box">
+                    <label for="">曾用名:</label>
+                    <input type="text" class="nickname">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>性别:</label>
+                <input type="text" class="sex">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>民族:</label>
+                <input type="text" class="nation">
+            <div class="box">
+                <label for=""><span class="reds">*</span>身份证号码:</label>
+                <input type="text" class="idcard">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>出生日期:</label>
+                <input type="text" class="birthday">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>政治面貌:</label>
+                <input type="text" class="politics">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>文化程度:</label>
+                <input type="text" class="education">
+            </div>
+            <div class="box">
+                    <label for=""><span class="reds">*</span>婚姻状况:</label>
+                    <input type="text" class="marriage_state">
+                </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>户口类型:</label>
+                <input type="text" class="account_type">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>户籍地省市区:</label>
+                <span class="accound_province"></span>
+                <span class="accound_city"></span>
+                <span class="accound_area"></span>
+                <span class="accound_street"></span>
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>户籍地详址:</label>
+                <input type="text" class="accound_address">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>现居住地省市区:</label>
+                <span class="live_province"></span>
+                <span class="live_city"></span>
+                <span class="live_area"></span>
+                <span class="live_street"></span>
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>现居住地详址:</label>
+                <input type="text" class="live_address">
+            </div>
+
+            <p class="title"><span>2.房屋及房主信息</span></p>
+
+            <div class="box">
+                <label for="">房屋信息编码:</label>
+                <input type="text" class="house_number">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>住所类型:</label>
+                <input type="text" class="live_type">
+            </div>
+            <div class="box">
+                <label for="">来陕时间:</label>
+                <input type="text" class="come_shan_time">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住方式:</label>
+                <input type="text" class="live_way">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>入住时间:</label>
+                <input type="text" class="live_time">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住事由:</label>
+                <input type="text" class="live_cause">
+            </div>
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)姓名:</label>
+                <input type="text" class="proxy_name">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)电话:</label>
+                <input type="text" class="proxy_phone">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>居住人与房主(代理人)关系:</label>
+                <input type="text" class="relation">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>房主(代理人)身份证:</label>
+                <input type="text" class="proxy_id_number">
+            </div>
+            
+            <div class="box">
+                <label for="">租赁合同:</label>
+                <input type="text" class="lease_pact">
+            </div>
+
+            <p class="title"><span>3.个人工作信息</span></p>
+            <div class="box">
+                <label for="">从业状态:</label>
+                <input type="text" class="business_type">
+            </div>
+
+            <div class="box">
+                <label for="">职业:</label>
+                <input type="text" class="profession">
+            </div>
+
+            <div class="box">
+                <label for="">职称:</label>
+                <input type="text" class="job_title">
+            </div>
+            <div class="box">
+                <label for="">工作单位:</label>
+                <input type="text" class="unit">
+            </div>
+            <div class="box">
+                <label for="">单位省市街道:</label>
+                <span class="unit_province"></span>
+                <span class="unit_city"></span>
+                <span class="unit_area"></span>
+                <span class="unit_street"></span>
+            </div>
+
+            <div class="box">
+                <label for="">工作单位地址:</label>
+                <input type="text" class="unit_address">
+            </div>
+            <div class="box">
+                <label for="">技能培训:</label>
+                <input type="text" class="username">
+            </div>
+
+            <div class="box">
+                <label for="">技能类别:</label>
+                <input type="text" class="skill_type">
+            </div>
+            <div class="box">
+                <label for="">证书:</label>
+                <input type="text" class="certificate">
+            </div>
+            <div class="box">
+                <label for="">证书编号:</label>
+                <input type="text" class="certificate_number">
+            </div>
+            <div class="box">
+                <label for="">工作单位联系电话:</label>
+                <input type="text" class="unit_phone">
+            </div>
+            
+            <div class="box">
+                <label for="">劳动合同:</label>
+                <input type="text" class="labour_pact">
+            </div>
+            <div class="box">
+                <label for="">参加社保:</label>
+                <input type="text" class="social_security">
+            </div>
+            <p class="title"><span>4.配偶信息</span></p>
+            <div class="box">
+                <label for="">配偶姓名:</label>
+                <input type="text" class="spouse_name">
+            </div>
+            <div class="box">
+                <label for="">生育动态:</label>
+                <input type="text" class="bear_state">
+            </div>
+            <div class="box">
+                <label for="">配偶身份证号码:</label>
+                <input type="text" class="spouse_id_number">
+            </div>
+
+            <div class="box">
+                <label for="">避孕动态:</label>
+                <input type="text" class="contraception_state">
+            </div>
+            <div class="box">
+                <label for="">持证状态:</label>
+                <input type="text" class="hold_certificate_state">
+            </div>
+            <p class="title"><span style="display:inline-block;width:4rem;left:18%">5.偕行人/子女(16岁以下)信息</span></p>
+
+
+            <div class="box" style="min-height: 2.4rem" id="push">
+                <label for="">子女信息:</label>
+                <ul class="cld">
+                    <li style="color:#024bb5">姓名</li>
+                    <li style="color:#024bb5">关系</li>
+                    <li style="color:#024bb5">身份证号码</li>
+                </ul>
+            </div>
+            <p class="title"><span>6.其他信息</span></p>
+            <div class="box">
+                <label for=""><span class="reds">*</span>首次办证:</label>
+                <input type="text" class="first_accreditation">
+            </div>
+
+            <div class="box">
+                <label for="">办证时间:</label>
+                <input type="text" class="accreditation_time">
+            </div>
+
+            <div class="box">
+                <label for=""><span class="reds">*</span>本人联系电话:</label>
+                <input type="text" class="phone">
+            </div>
+
+             <div class="box">
+                <label for="">QQ号码:</label>
+                <input type="text" class="qq">
+            </div>
+             <div class="box">
+                <label for="">车牌号码:</label>
+                <input type="text" class="licence_plate">
+            </div>
+            <div class="box">
+                <label for="">指纹编码:</label>
+                <input type="text" class="fingerprint">
+            </div>
+            <div class="box">
+                <label for="">血型:</label>
+                <input type="text" class="blood_type">
+            </div>
+            <div class="box">
+                <label for="">DNA编码:</label>
+                <input type="text" class="dna">
+            </div>
+            <div class="box pics">
+                <label for="">一寸彩色照片:</label>
+                <div class="box1">
+                    <img class="photos"  alt="">
+                </div>
+            </div>
+       
+
+            <div class="box identity1">
+                <label for="">身份证正面照片:</label>
+                <div class="box2">
+                    <img class="identity01"  alt="">
+                </div>
+            </div>
+
+            <div class="box identity2">
+                <label for="">身份证反面照片:</label>
+                <div class="box3">
+                    <img class="identity02"  alt="">
+                </div>
+            </div>
+
+
+            <div class="box identity1">
+                <label for="">居住证照片:</label>
+                <div class="box2">
+                    <img class="residence"  alt="">
+                </div>
+            </div>
+
+            <div class="box identity1">
+                <label for="">手持身份证照片:</label>
+                <div class="box2">
+                    <img class="identitys"  alt="">
+                </div>
+            </div>
+
+            
+            <div class="box" style="display:none">
+                <input type="text" name="uid" class="uid">
+                <input type="text" class="chinum">
+                <input type="text" class="num1">
+                <input type="text" class="num2">
+                <input type="text" class="num3">
+                <input type="text" class="num4">
+                <input type="text" class="num5">
+            </div>
+        </form>
+
+</body>
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.citys.js"></script>
+<script>
+        $(function(){
+            let s= window.location.href.split('?')[1]
+            console.log(s)
+            if(s==undefined){
+                location.href="../login.html"
+            }
+            var params1 = {id:s}
+            $.ajax({ 
+                        type:'get',  
+                        url:"http://47.93.187.125:2020/api/v1/userinfo/info_detail", 
+                        cache: false,
+                        data:params1,
+                        dataType:'json', 
+                        success: function (result) {
+                            // console.log(result);//打印服务端返回的数据(调试用)
+                            if (result.code == 200) {
+                                console.log(result.data)
+                                let s = result.data
+                                $(".tissue_id").val(s.tissue_id)
+                                $(".username").val(s.username)
+                                $(".nickname").val(s.nickname)
+                                $(".sex").val(s.sex)
+                                $(".nation").val(s.nation)
+                                $(".idcard").val(s.idcard)
+                                $(".birthday").val(s.birthday)
+                                $(".politics").val(s.politics)
+                                $(".education").val(s.education)
+                                $(".marriage_state").val(s.marriage_state)
+                                $(".account_type").val(s.account_type)
+                                $(".accound_address").val(s.accound_address)
+                                $(".live_address").val(s.live_address)
+                                $(".house_number").val(s.house_number)
+                                $(".live_type").val(s.live_type)
+                                $(".come_shan_time").val(s.come_shan_time)
+                                $(".live_way").val(s.live_way)
+                                $(".live_time").val(s.live_time)
+                                $(".live_cause").val(s.live_cause)
+                                $(".proxy_name").val(s.proxy_name)
+                                $(".proxy_phone").val(s.proxy_phone)
+                                $(".relation").val(s.relation)
+                                $(".proxy_id_number").val(s.proxy_id_number)
+                                $(".lease_pact").val(s.lease_pact)
+                                $(".business_type").val(s.business_type)
+                                $(".profession").val(s.profession)
+                                $(".job_title").val(s.job_title)
+                                $(".unit").val(s.unit)
+                                $(".unit_address").val(s.unit_address)
+                                $(".skill_training").val(s.skill_training)
+                                $(".skill_type").val(s.skill_type)
+                                $(".unit_phone").val(s.unit_phone)
+                                $(".labour_pact").val(s.labour_pact)
+                                $(".social_security").val(s.social_security)
+                                $(".spouse_name").val(s.spouse_name)
+                                $(".bear_state").val(s.bear_state)
+                                $(".spouse_id_number").val(s.spouse_id_number)
+                                $(".contraception_state").val(s.contraception_state)
+                                $(".hold_certificate_state").val(s.hold_certificate_state)
+                                $(".first_accreditation").val(s.first_accreditation)
+                                $(".accreditation_time").val(s.accreditation_time)
+                                $(".phone").val(s.phone)
+                                $(".qq").val(s.qq)
+                                $(".licence_plate").val(s.licence_plate)
+                                $(".fingerprint").val(s.fingerprint)
+                                $(".blood_type").val(s.blood_type)
+                                $(".dna").val(s.dna)
+                                $(".accound_province").html(s.accound_province)
+                                $(".accound_city").html(s.accound_city)
+                                $(".accound_area").html(s.accound_area)
+                                $(".accound_street").html(s.accound_street)
+                                $(".live_province").html(s.live_province)
+                                $(".live_city").html(s.live_city)
+                                $(".live_area").html(s.live_area)
+                                $(".live_street").html(s.live_street)
+                                $(".unit_province").html(s.unit_province)
+                                $(".unit_city").html(s.unit_city)
+                                $(".unit_area").html(s.unit_area)
+                                $(".unit_street").html(s.unit_street)
+
+                                $(".photos").attr("src",s.ycimage);
+                                $(".identity01").attr("src",s.sfzzmimage);
+                                $(".identity02").attr("src",s.sfzfmimage);
+                                $(".residence").attr("src",s.jzzmimage);
+                                $(".identitys").attr("src",s.scsfzimage);
+                                let res = s.child
+                                console.log(res)
+                                res.forEach(function(v){
+                                    console.log(v)
+                                    var ulStr = '<ul>'
+                                    ulStr += ('<li>'+ v.username +'</li>')
+                                    ulStr += ('<li>'+ v.relation +'</li>')
+                                    ulStr += ('<li>'+ v.idcard +'</li>')
+                                    ulStr += '</ul>'
+                                    // document.body.innerHTML += ulStr
+                                    $("#push").append(ulStr)
+                                })
+                            };          
+                        
+                        },
+                        error : function(err) {                 
+                            console.log(err)
+                            alert("异常！");
+                        }
+                     })
+           
+        })
+</script>

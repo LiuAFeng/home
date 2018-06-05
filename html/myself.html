@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/ba.css">
+    <title>个人中心</title>
+    <style>
+        .top{width: 100%;height: 4.4rem;background: #2b68c1;position: relative}
+        .names{
+            width: 1.58rem;height: 1.58rem;border: 0.1rem solid #7e9dc9;border-radius: 50%;
+            position: absolute;top: 1.59rem;left: 2.3rem;text-align: center;line-height: 1.58rem;
+            font-size: 0.74rem;font-weight: 400;color: #f15a24;background: #565656
+            }
+        .ming{width: 100%;position: absolute;top: 3.45rem;text-align: center;color:#fff;}
+        .mynews{width: 5.46rem;height: 0.7rem;background: #dbdbdb;margin: 0.27rem auto;margin-top: 1rem;border-radius: 0.2rem;line-height: 0.7rem}
+        .changepass{width: 5.46rem;height: 0.7rem;background: #dbdbdb;margin: 0.27rem auto;border-radius: 0.2rem;}
+        .close{width: 5.46rem;height: 0.7rem;background: #dbdbdb;margin: 0.27rem auto;border-radius: 0.2rem;}
+        input{display: block;margin: 0 auto;width: 4.4rem;height: 0.65rem;background: #e57a5a;
+        border: none;margin-top: 0.8rem;border-radius: 0.2rem;color: #fff;-webkit-appearance:none;}
+        span{display: inline-block;width: 0.43rem;height: 0.34rem;margin-top: 0.2rem;margin-left: 0.35rem}
+        span img{width: 100%;height: 100%;}
+        .my{width: 100%;height: 0.33rem;text-align: center;padding-top: 0.7rem;color: #fff;font-size: 0.33rem}
+        .top a{position: absolute;top:0.3rem;color: #fff;font-size: 0.24rem;left: 0.5rem}
+    </style>
+</head>
+<body>
+    <div class="top">
+        <a href="javascript:history.go(-1)">返回</a>
+        <p class="my">个人中心</p>
+        <p class="names"></p>
+        <p class="ming"></p>
+    </div>
+
+    <div class="footer">
+        <a style="color:gray" href="mynews.html"><p class="mynews"><span><img src="../img/xiaoxi.svg" alt=""></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的消息</p></a>
+
+        <p style="color:gray" class="changepass"><span><img src="../img/mima.svg" alt=""></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改密码</p>
+
+        <a style="color:gray" href="http://www.iwiselife.com/residential/public/index.php/admin/residence/process/get_find_process"><p class="close"><span><img src="../img/zhinan.svg" alt=""></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;办理指南</p></a>
+
+        <input type="button" value="退出登录" class="quit">
+    </div>
+
+
+
+    
+</body>
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+     $(function(){
+         
+        var data1 = JSON.parse(sessionStorage.getItem('key'));
+        let res = (data1.name)
+        if(data1.name==""){
+            location.href="login.html"
+         }
+        console.log(res)
+        
+        var text = ""
+        var long = res.split("").length
+        var username=res.split("")[0]
+       
+        if(long==2){
+            var username=res.split("")[0]
+            var a = res.split("")[1]
+            text=a
+            $(".names").html(username)
+            $(".ming").html(text)
+        }if(long==3){
+            var username=res.split("")[0]
+            var a = res.split("")[1]
+            var b = res.split("")[2]
+            text=a+b
+            $(".names").html(username)
+            $(".ming").html(text)
+        }if(long==4){
+            var a = res.split("")[1]
+            var b = res.split("")[2]
+            var c = res.split("")[3]
+            text=a+b+c
+            $(".names").html(username)
+            $(".ming").html(text)
+        }
+        $(".quit").on("click",function(){
+            sessionStorage.removeItem("key")
+            alert("退出成功")   
+            location.href="../login.html"
+        })
+       
+   })
+</script>

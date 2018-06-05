@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/ba.css">
+    <style>
+        .pic{width: 100%;}
+        .header{width: 100%;height: 0.8rem;background: #eee;text-align: center;line-height: 0.8rem;color: #000;font-size: 0.28rem}
+        .list{margin-top: 1rem}
+        .list li{width: 33%;height: 3rem;float: left;box-sizing: border-box;}
+        .list li div{width: 1.4rem;height: 1.4rem;border: 1px solid #eee;margin: 0 auto;border-radius: 0.15rem;box-shadow: 0 0 0.3rem #e6e6e6}
+        .list div img{display: block;width: 0.78rem;height: 0.78rem;padding-top: 0.3rem;margin-left:0.3rem}
+        .list p{text-align: center;line-height: 1rem;color: #000;margin-top: 0.5rem}
+        .banner{width: 100%;height: 3rem;}
+        .banner img{width: 95%;height: 100%;margin-left: 2.5%;margin-top: 0.66rem}
+    </style>
+    <title>居住证办理</title>
+</head>
+<body>
+    <p class="header">居住证办理</p>
+    <div class="pic">
+        <h2 style="font-size:0.34rem;margin-left:0.6rem;padding-top:0.6rem">首页</h2>
+    </div>
+    <div class="banner">
+         <img src="../img/banner.png" alt="">
+    </div>
+    <ul class="list">
+        <li>
+            <a href="transaction.html">
+               <div>
+                    <img src="../img/woyaoban.svg" alt="">
+                    <p>我要办</p>
+                </div> 
+            </a>
+        </li>
+        <li>
+            <a href="query.html">
+               <div>
+                    <img src="../img/woyaocha.svg" alt="">
+                    <p>我要查</p>
+                </div> 
+            </a>
+        </li>
+        <li>
+            <a href="myself.html">
+                <div>
+                    <img src="../img/wode.svg" alt="">
+                    <p>我的</p>
+                </div>   
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
+    <script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+        var data1 = JSON.parse(sessionStorage.getItem('key'));
+        console.log(data1)
+        if(data1==null){
+            location.href='../login.html'
+        }
+        var username=document.cookie.split("=")[1]
+        // console.log(username)
+         if(username == ""){
+            location.href="../login.html"
+         }
+</script>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/ba.css">
+    <title>登录</title>
+    <style>
+        html body{background: #F6F8F8}
+        input{-webkit-appearance:none;}
+        #logins{width: 90%;height:5rem;margin-top: 2rem}
+        #reg{width: 90%;height:5rem;display: none;height:8.2rem;margin-top: 1rem}
+        .header{width: 100%;height: 0.8rem;background: #eee}
+        .logs{margin: 0 auto;margin-top: 0.5rem;background: #ffffff}
+        .logs p{width: 100%;height: 0.8rem;text-align: center;line-height: 0.8rem;font-size: 0.28rem;color: black;font-weight: 900}
+        .logs input{width: 90%;margin-left: 5%;border: none;height: 0.8rem;border-bottom: 1px solid #000;margin-top: 0.2rem}
+        #regs{display: inline-block;width: 80%;line-height: 0.5rem;font-size: 0.15rem;text-align: right;margin-top: 0.3rem;font-size: 0.2rem}
+        #regs1{display: inline-block;width: 80%;line-height: 0.5rem;font-size: 0.15rem;text-align: right;margin-top: 0.3rem;font-size: 0.2rem}
+        .top{width: 100%;height: 100%;}
+        .top li{width: 33.33%;float: left;text-align: center;line-height: 0.8rem;color: #000}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <ul class="top">
+            <li><a href="javascript:history.go(-1)" style="color:#000">返回</a></li>
+            <li>登录</li>
+            <li>指南</li>
+        </ul>
+    </div>
+    <form action="" method="" id="logins" class="logs">
+        <p>登录</p>
+        <input name="idcard" type="number" placeholder="请输入身份证号" class="idcard1">
+        <input name="password" type="password" placeholder="请输入密码" class="password1">
+        <span id="regs">还没账号点此注册</span>
+        <input type="button" value="登录" style="border:none;border-radius: 0.1rem;background:#3f51b5;color:#fff" class="long">
+    </form>
+    
+    <form action="" method="" id="reg" class="logs">
+        <p>注册</p>
+        <input name="idcard" type="number" placeholder="请输入身份证号" class="idcard2">
+        <input name="password" type="password" placeholder="请输入密码" class="password2">
+        <input name="" type="password" placeholder="重复密码" class="password3">
+        <input name="username" type="text" placeholder="请输入姓名" class="username2">
+        <input name="mobile" type="number" placeholder="请输入手机号码" class="mobile2">
+        <span id="regs1">已有账号?去登陆!</span>
+        <input type="button" value="注册" style="border:none;border-radius: 0.1rem;margin-top:0.3rem;background:#3f51b5;color:#fff" class="register">
+    </form>
+</body>
+</html>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+        $("#regs").click(function(){
+			$("body #logins").css("display","none");
+            $("body #regs").css("display","none");
+            $("body #reg").css("display","block");
+            $("body #regs1").css("display","block");
+        });
+        $("#regs1").click(function(){
+            $("body #reg").css("display","none");
+            $("body #regs1").css("display","none");
+            $("body #regs").css("display","block");
+			$("body #logins").css("display","block");
+		});
+		
+        $(".long").on("click",function(){
+            var params1 = $("#logins").serialize();
+            console.log(params1)
+            var ipt1 = $(".idcard1").val()
+            var ipt2 = $(".password1").val()
+            if((ipt1 && ipt2)){
+                $.ajax({ 
+                type:'post',  
+                url:"http://47.93.187.125:2020/api/v1/user/login", 
+                cache: false,
+                data:params1,
+                dataType:'json', 
+                success: function (result) {
+                    console.log(result.data)
+                    if (result.code == 200) {
+                        const info = {
+                            name: result.data.username,
+                            id: result.data.uid
+                        };
+                        sessionStorage.setItem('key', JSON.stringify(info));
+                        // localStorage.setItem('key', JSON.stringify(info));
+                        console.log(result)
+                        // return false
+                        location.href="html/index.html"
+                    }else{
+                        alert(result.msg);
+                    };
+                },
+                error : function(err) {
+                    alert("网络错误请稍后重试")
+                }
+            })
+            }else{
+                alert("请输入账号密码")
+            }
+            
+        })
+        $(".register").on("click",function(){
+            var params2 = $("#reg").serialize();
+            console.log(params2)
+            var ipt1 = $(".idcard2").val()
+            var ipt2 = $(".password2").val()
+            var ipt3 = $(".password3").val()
+            var ipt4 = $(".username2").val()
+            var ipt5 = $(".mobile2").val()
+                if(ipt1&&ipt2&&ipt4&&ipt5){
+                    if(ipt2==ipt3){
+                        $.ajax({ 
+                            type:'post',  
+                            url:"http://47.93.187.125:2020/api/v1/user/register", 
+                            cache: false,
+                            data:params2,
+                            dataType:'json', 
+                            success: function (result) {
+                                console.log(result);//打印服务端返回的数据(调试用)
+                                if (result.code == 200) {
+                                    alert("注册成功");
+                                    console.log(result)                     
+                                    var len = window.location.href.indexOf("?");
+                                        if(len>0){
+                                            window.location.href=window.location.href.substring(0,len)+"?"+Math.random();
+                                        }else{
+                                            window.location.href=window.location.href+"?"+Math.random();
+}
+                                }else{
+                                    alert(result.msg);
+                                }
+                            },
+                            error : function(err) {
+                                alert("网络错误请稍后重试")
+                            }
+                        })  
+                    }else{
+                        alert("两次密码输入不一致")
+                    }
+                    
+                }else{
+                    alert("请输入完整信息")
+                }
+               
+            
+            // return false
+            
+        })
+    })
+</script>
